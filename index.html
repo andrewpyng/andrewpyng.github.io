@@ -186,6 +186,52 @@
             color: var(--text-secondary);
             font-size: 0.9rem;
         }
+
+        /* --- MODAL STYLES --- */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+        }
+
+        .modal-content {
+            background-color: #1e293b;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #334155;
+            width: 80%;
+            height: 80%;
+            position: relative;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .close-button {
+            color: #94a3b8;
+            align-self: flex-end;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #f8fafc;
+        }
+
+        #modalFrame {
+            flex-grow: 1; /* Ensures iframe fills the space */
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
@@ -276,6 +322,47 @@
             <p>&copy; 2025 Andrew Ng. Hosted on GitHub Pages.</p>
         </div>
     </footer>
+
+    <!-- MODAL -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <iframe id="modalFrame" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const modal = document.getElementById('projectModal');
+        const modalFrame = document.getElementById('modalFrame');
+        const demoLinks = document.querySelectorAll('.link-demo');
+        const closeButton = document.querySelector('.close-button');
+
+        demoLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const url = this.getAttribute('href');
+                if (url && url !== '#') {
+                    modalFrame.src = url;
+                    modal.style.display = 'block';
+                }
+            });
+        });
+
+        function closeModal() {
+            modal.style.display = 'none';
+            modalFrame.src = ''; // Stop video/game from running in background
+        }
+
+        closeButton.addEventListener('click', closeModal);
+
+        // Close modal if user clicks outside of the modal content
+        window.addEventListener('click', function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        });
+    </script>
 
 </body>
 </html>
