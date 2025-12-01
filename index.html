@@ -79,8 +79,19 @@
         .hero p {
             font-size: 1.2rem;
             color: var(--text-secondary);
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto 30px;
+        }
+
+        .ai-badge {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            border: 1px solid var(--accent-color);
         }
 
         .btn {
@@ -179,6 +190,7 @@
 </head>
 <body>
 
+    <!-- NAVIGATION -->
     <header>
         <div class="container">
             <nav>
@@ -186,48 +198,64 @@
                 <ul class="nav-links">
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="https://github.com/andrewpyng" target="_blank">GitHub</a></li>
+                    <!-- New LinkedIn Link -->
+                    <li><a href="https://www.linkedin.com/in/andrewpyng/" target="_blank">LinkedIn</a></li>
                     <li><a href="mailto:andrewng@live.com">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
+    <!-- HERO SECTION -->
     <section class="hero">
         <div class="container">
+            <!-- Optional AI Experiment Badge -->
+            <div class="ai-badge">🤖 AI Experiment In Progress</div>
+            
             <h1>Hi, I'm Andrew Ng.</h1>
-            <p>I build web applications and digital experiences. Check out my latest experiments and projects below.</p>
+            
+            <!-- Updated Personal Description -->
+            <p>
+                Software Engineer and AI enthusiast passionate about building scalable digital experiences. 
+                This entire portfolio is a sandbox for my experiments with <strong>AI-driven development</strong>, 
+                exploring how Large Language Models can accelerate modern web workflows.
+            </p>
+            
             <a href="#projects" class="btn">View My Work</a>
         </div>
     </section>
 
+    <!-- PROJECTS SECTION -->
     <section id="projects" class="projects-section">
         <div class="container">
             <h2 class="section-title">Recent Projects</h2>
             
             <div class="grid">
                 
+                <!-- PROJECT 1: SNAKE GAME -->
                 <article class="card">
-                    <div class="card-image">COMING SOON</div> 
+                    <div class="card-image" style="background-color: #0f172a; color: #38bdf8; font-family: monospace; font-size: 1.2rem;">
+                        >>> SNAKE GAME
+                    </div> 
                     <div class="card-content">
-                        <h3 class="card-title">Future Project 1</h3>
+                        <h3 class="card-title">Classic Snake</h3>
                         <p class="card-desc">
-                            This is a placeholder for your first project (e.g., Asteroid Shooter). 
-                            Once you create the repo, update the links below.
+                            A retro-style arcade game built entirely with HTML5 Canvas and JavaScript. Features touch controls for mobile and high-score tracking.
                         </p>
                         <div class="card-links">
-                            <a href="/REPO_NAME_HERE/" class="link-demo">Live Demo &rarr;</a>
-                            
-                            <a href="https://github.com/andrewpyng/REPO_NAME_HERE" target="_blank" class="link-repo">View Code</a>
+                            <a href="/classic-snake-gemini/" class="link-demo">Live Demo &rarr;</a>
+                            <a href="https://github.com/andrewpyng/classic-snake-gemini" target="_blank" class="link-repo">View Code</a>
                         </div>
                     </div>
                 </article>
 
+                <!-- PLACEHOLDER PROJECT 2 -->
                 <article class="card">
                     <div class="card-image">COMING SOON</div>
                     <div class="card-content">
                         <h3 class="card-title">Future Project 2</h3>
                         <p class="card-desc">
-                            Placeholder for a second project. You can duplicate this block to add more projects later.
+                            Placeholder for your next big idea. You can duplicate this block to add more projects later.
                         </p>
                         <div class="card-links">
                             <a href="#" class="link-demo">Live Demo &rarr;</a>
@@ -240,6 +268,7 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         <div class="container">
             <p>&copy; 2025 Andrew Ng. Hosted on GitHub Pages.</p>
