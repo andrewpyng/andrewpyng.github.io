@@ -4,235 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Andrew Ng</title>
-    <style>
-        /* --- CSS VARIABLES --- */
-        :root {
-            --bg-color: #0f172a;       /* Dark Blue/Slate Background */
-            --card-bg: #1e293b;        /* Slightly lighter for cards */
-            --text-primary: #f8fafc;   /* White text */
-            --text-secondary: #94a3b8; /* Grey text */
-            --accent-color: #38bdf8;   /* Light Blue Accent */
-            --accent-hover: #0ea5e9;   /* Darker Blue for hover */
-            --font-main: system-ui, -apple-system, sans-serif;
-        }
-
-        /* --- GLOBAL STYLES --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            font-family: var(--font-main);
-            line-height: 1.6;
-        }
-
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        ul { list-style: none; }
-
-        /* --- LAYOUT UTILITIES --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- HEADER --- */
-        header {
-            padding: 20px 0;
-            border-bottom: 1px solid #334155;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent-color);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links a:hover { color: var(--accent-color); }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
-
-        .ai-badge {
-            display: inline-block;
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--accent-color);
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            border: 1px solid var(--accent-color);
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: #0f172a;
-            padding: 10px 25px;
-            border-radius: 5px;
-            font-weight: 600;
-        }
-
-        .btn:hover { background-color: var(--accent-hover); }
-
-        /* --- PROJECTS GRID --- */
-        .projects-section {
-            padding: 50px 0;
-        }
-
-        .section-title {
-            margin-bottom: 40px;
-            font-size: 2rem;
-            border-left: 5px solid var(--accent-color);
-            padding-left: 15px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        /* --- PROJECT CARD --- */
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #334155;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            border-color: var(--accent-color);
-        }
-
-        .card-image {
-            width: 100%;
-            height: 180px;
-            background-color: #334155; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #64748b;
-            font-weight: bold;
-            letter-spacing: 1px;
-        }
-
-        .card-content {
-            padding: 20px;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-            color: var(--text-primary);
-        }
-
-        .card-desc {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-        }
-
-        .card-links {
-            display: flex;
-            gap: 15px;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .link-demo { color: var(--accent-color); }
-        .link-repo { color: var(--text-secondary); }
-        .link-repo:hover { color: var(--text-primary); }
-
-        /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 40px 0;
-            margin-top: 50px;
-            border-top: 1px solid #334155;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* --- MODAL STYLES --- */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.7);
-        }
-
-        .modal-content {
-            background-color: #1e293b;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #334155;
-            width: 80%;
-            height: 80%;
-            position: relative;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .close-button {
-            color: #94a3b8;
-            align-self: flex-end;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close-button:hover,
-        .close-button:focus {
-            color: #f8fafc;
-        }
-
-        #modalFrame {
-            flex-grow: 1; /* Ensures iframe fills the space */
-            border: none;
-            width: 100%;
-            height: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -242,6 +14,9 @@
             <nav>
                 <div class="logo">&lt;AndrewNg /&gt;</div>
                 <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="https://github.com/andrewpyng" target="_blank">GitHub</a></li>
                     <!-- New LinkedIn Link -->
@@ -262,19 +37,84 @@
             
             <!-- Updated Personal Description -->
             <p>
-                Software Engineer and AI enthusiast passionate about building scalable digital experiences. 
-                This entire portfolio is a sandbox for my experiments with <strong>AI-driven development</strong>, 
-                exploring how Large Language Models can accelerate modern web workflows.
+                Engineering Director experienced in building massive-scale SaaS platforms.
+                Specializing in high-throughput distributed systems handling 10M+ daily transactions.
+                This portfolio is a sandbox for my experiments with <strong>AI-driven development</strong>.
             </p>
             
             <a href="#projects" class="btn">View My Work</a>
         </div>
     </section>
 
+    <!-- ABOUT ME SECTION -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <p>
+                As a seasoned engineering leader, I thrive on building and scaling high-performance teams and systems. With over [Number] years of experience in the software industry, I have a proven track record of delivering robust and scalable solutions for complex business problems. My passion lies in the intersection of technology, strategy, and people, and I am committed to fostering a culture of innovation and continuous improvement.
+            </p>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section id="experience" class="experience-section">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Engineering Director</h3>
+                    <p><em>Company Name | 2020 - Present</em></p>
+                    <ul>
+                        <li>Led a team of [Number] engineers to build and maintain a massive-scale SaaS platform.</li>
+                        <li>Architected and implemented a high-throughput distributed system handling over 10M daily transactions.</li>
+                        <li>Drove the adoption of modern technologies and best practices, resulting in a [Percentage]% improvement in system performance and reliability.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <h3>Senior Software Engineer</h3>
+                    <p><em>Another Company | 2015 - 2020</em></p>
+                    <ul>
+                        <li>Developed and maintained key features for a large-scale e-commerce platform.</li>
+                        <li>Mentored junior engineers and played a key role in the team's technical growth.</li>
+                        <li>Contributed to the migration of a monolithic application to a microservices architecture.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Leadership</h3>
+                    <ul>
+                        <li>Team Building &amp; Mentoring</li>
+                        <li>Agile &amp; Scrum Methodologies</li>
+                        <li>Strategic Planning &amp; Roadmapping</li>
+                        <li>Cross-functional Collaboration</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Technical</h3>
+                    <ul>
+                        <li>Distributed Systems</li>
+                        <li>Microservices Architecture</li>
+                        <li>Cloud Computing (AWS, GCP, Azure)</li>
+                        <li>DevOps &amp; CI/CD</li>
+                        <li>JavaScript, Python, Go</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- PROJECTS SECTION -->
     <section id="projects" class="projects-section">
         <div class="container">
-            <h2 class="section-title">Recent Projects</h2>
+            <h2 class="section-title">Featured Projects</h2>
             
             <div class="grid">
                 
@@ -286,7 +126,7 @@
                     <div class="card-content">
                         <h3 class="card-title">Classic Snake</h3>
                         <p class="card-desc">
-                            A retro-style arcade game built entirely with HTML5 Canvas and JavaScript. Features touch controls for mobile and high-score tracking.
+                            A retro-style arcade game built entirely with HTML5 Canvas and JavaScript. Demonstrates clean code, and fundamental game development patterns.
                         </p>
                         <div class="card-links">
                             <a href="/classic-snake/" class="link-demo">Live Demo &rarr;</a>
@@ -303,7 +143,7 @@
                     <div class="card-content">
                         <h3 class="card-title">Sky Defender</h3>
                         <p class="card-desc">
-                            A classic arcade-style shooter game. Defend the skies from incoming enemies.
+                            A classic arcade-style shooter game, showcasing object-oriented programming principles and animation with JavaScript.
                         </p>
                         <div class="card-links">
                             <a href="/sky-defender/" class="link-demo">Live Demo &rarr;</a>
@@ -331,38 +171,7 @@
         </div>
     </div>
 
-    <script>
-        // Modal functionality
-        const modal = document.getElementById('projectModal');
-        const modalFrame = document.getElementById('modalFrame');
-        const demoLinks = document.querySelectorAll('.link-demo');
-        const closeButton = document.querySelector('.close-button');
-
-        demoLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                const url = this.getAttribute('href');
-                if (url && url !== '#') {
-                    modalFrame.src = url;
-                    modal.style.display = 'block';
-                }
-            });
-        });
-
-        function closeModal() {
-            modal.style.display = 'none';
-            modalFrame.src = ''; // Stop video/game from running in background
-        }
-
-        closeButton.addEventListener('click', closeModal);
-
-        // Close modal if user clicks outside of the modal content
-        window.addEventListener('click', function(event) {
-            if (event.target == modal) {
-                closeModal();
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
